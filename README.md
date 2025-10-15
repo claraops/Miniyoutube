@@ -42,7 +42,7 @@ photo_tech/
 -cd photo_tech
 -npm install
 
-*Lancer l’application :
+# lancer l'application
 -npm run dev
 
 -L’application sera accessible sur :  http://localhost:5173
