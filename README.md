@@ -1,21 +1,50 @@
-# React + Vite
+# description
+Photo Tech est une application web React qui permet de visualiser et interagir avec des vidéos dans deux modes : style TikTok (vertical, immersion totale) et style YouTube (grille avec miniatures). Les utilisateurs peuvent liker, commenter, ajouter aux favoris et suivre les vues de chaque vidéo.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Fonctionnatlité
 
-Currently, two official plugins are available:
+-Modes d’affichage vidéo
+TikTok : vertical, plein écran, avec overlay et boutons flottants
+YouTube : grille classique, miniature + infos sous la vidéo
+-Like des vidéos
+-Ajouter / retirer des favoris
+-Section commentaires dynamique
+-rechercher par categorie
+-Compteur de vues
+-Design moderne et responsive
+-Animations et effets visuels pour une expérience utilisateur fluide
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Prerequis
+-Node.js 
+-npm
+-Clé API Pexels
+-css, react/ vite
 
-## React Compiler
+# Struture
+photo_tech/
+├─ src/
+│  ├─ components/
+│  │  ├─ VideoCard.jsx
+│  │  ├─ CommentSection.jsx
+│  │  └─ ...
+│  ├─ App.jsx
+│  └─ index.js
+├─ public/
+├─ package.json
+├─ README.md
+└─ ...
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# cloner projet : 
+-Cloner le dépôt :
+git clone https://github.com/claraops/Miniyoutube.git
 
-## Expanding the ESLint configuration
+-Installer les dépendances :
+cd photo_tech
+npm install
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+-Lancer l’application :
+npm start
+
+-L’application sera accessible sur http://localhost:3000
 
 
-# pour cloner: 
-faire un git clonne du projet 
-puis un npm install 
