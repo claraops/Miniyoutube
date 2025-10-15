@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import VideoCard from "./components/VideoCard";
 import FilterBar from "./components/FilterBar";
+
+
 import "./App.css";
 
 function App() {
@@ -103,16 +105,7 @@ function App() {
         </div>
       </header>
 
-      <form onSubmit={handleSearch} className="search-bar">
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Rechercher des vidéos..."
-        />
-        <button type="submit">🔍 Rechercher</button>
-      </form>
-
+      <h2 className="categ">  CATEGORIE </h2>
       <FilterBar category={category} setCategory={setCategory} />
 
       {loading && <p>Chargement...</p>}

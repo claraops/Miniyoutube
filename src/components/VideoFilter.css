@@ -2,13 +2,6 @@
   margin-bottom: 20px;
 }
 
-.video-filter h3 {
-  text-align: center;
-  margin-bottom: 15px;
-  color: #ccc;
-  font-size: 1.1rem;
-}
-
 .filter-buttons {
   display: flex;
   flex-wrap: wrap;

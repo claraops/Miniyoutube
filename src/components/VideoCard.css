@@ -1,54 +1,182 @@
+/* 🌍 Base globale */
 .video-card {
-  background: #1a1a1a;
-  border-radius: 15px;
+  background: #121212;
+  border-radius: 16px;
   overflow: hidden;
   transition: all 0.3s ease;
-  border: 1px solid #333;
+  border: 1px solid #222;
+  color: #f1f1f1;
+  font-family: "Poppins", sans-serif;
+  position: relative;
 }
+
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(255, 107, 107, 0.25);
+}
+
 
 .video-card.grid {
+  display: flex;
+  flex-direction: column;
   cursor: pointer;
-}
-
-.video-card.grid:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.2);
-}
-
-.video-card.tiktok {
-  height: 80vh;
-  position: relative;
-  border-radius: 10px;
-}
-
-.video-container {
-  position: relative;
-  background: #000;
+  background: #181818;
 }
 
 .video-card.grid .video-container {
-  aspect-ratio: 16/9;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
 }
 
-.video-card.tiktok .video-container {
-  height: 100%;
-}
-
-.video-player {
+.video-card.grid .video-player {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background: #000;
 }
 
-/* Overlay mode TikTok */
+.video-info-grid {
+  padding: 16px;
+}
+
+.video-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.video-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+.video-description {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-top: 6px;
+}
+
+/* Icône de suppression */
+.delete-btn {
+  background: none;
+  border: none;
+  color: #777;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.delete-btn:hover {
+  color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.1);
+}
+
+/* Stats (vues, durée, etc.) */
+.video-stats {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #888;
+  font-size: 0.85rem;
+  margin: 10px 0;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Boutons d’action (like, favoris...) */
+.video-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.video-actions button {
+  flex: 1;
+  border: none;
+  border-radius: 30px;
+  padding: 8px 14px;
+  background: #2a2a2a;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.video-actions button:hover {
+  background: #333;
+  transform: scale(1.03);
+}
+
+.video-actions button:active {
+  transform: scale(0.97);
+}
+
+/* ❤️ Like */
+.video-actions .liked {
+  color: #ff4d4d;
+  background: rgba(255, 77, 77, 0.2);
+}
+
+.video-actions .liked:hover {
+  background: rgba(255, 77, 77, 0.3);
+}
+
+/* ⭐ Favori */
+.video-actions .favorited {
+  color: #ffd633;
+  background: rgba(255, 214, 51, 0.2);
+}
+
+.video-actions .favorited:hover {
+  background: rgba(255, 214, 51, 0.3);
+}
+
+/* 🗑️ Supprimer */
+.video-actions .delete {
+  background: rgba(255, 77, 77, 0.15);
+  color: #ff4d4d;
+}
+
+.video-actions .delete:hover {
+  background: rgba(255, 77, 77, 0.25);
+}
+
+/* ========== 📱 MODE TIKTOK ========== */
+.video-card.vertical {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.video-card.vertical video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay TikTok style */
 .tiktok-overlay {
   position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 20px;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  width: 100%;
+  padding: 16px 20px;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.85));
+  color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -59,20 +187,23 @@
 }
 
 .video-author {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
 .video-description {
-  color: #ccc;
   font-size: 0.9rem;
+  color: #ddd;
+  margin-top: 4px;
 }
 
+/* TikTok-like action buttons */
 .action-buttons-tiktok {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  align-items: center;
+  gap: 18px;
+  margin-right: 10px;
 }
 
 .action-btn {
@@ -83,96 +214,54 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
+  font-size: 1.3rem;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.action-btn span {
   font-size: 0.8rem;
-  transition: transform 0.3s ease;
+  color: #ccc;
 }
 
 .action-btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .action-btn.liked {
-  color: #ff6b6b;
+  color: #ff4d4d;
 }
 
-/* Info mode Grille */
-.video-info-grid {
-  padding: 15px;
+.action-btn.favorited {
+  color: #ffd633;
 }
 
-.video-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 10px;
-}
+/* 🎚️ Responsive */
+@media (max-width: 768px) {
+  .video-card {
+    border-radius: 8px;
+  }
 
-.video-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0;
-  color: white;
-}
+  .video-info-grid {
+    padding: 10px;
+  }
 
-.delete-btn {
-  background: none;
-  border: none;
-  color: #888;
-  cursor: pointer;
-  padding: 5px;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-}
+  .video-title {
+    font-size: 1rem;
+  }
 
-.delete-btn:hover {
-  color: #ff6b6b;
-  background: rgba(255, 107, 107, 0.1);
-}
+  .video-actions button {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+  }
 
-.video-stats {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 15px;
-  color: #888;
-  font-size: 0.9rem;
+  .video-card.vertical {
+    height: 80vh;
+  }
 }
+span{
+    font-size: 12px;
+    italic: true;
+    font-style: italic;
 
-.stat {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.video-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.like-btn {
-  flex: 1;
-  padding: 8px 16px;
-  background: #333;
-  border: none;
-  border-radius: 20px;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.like-btn.liked {
-  background: rgba(255, 107, 107, 0.2);
-  color: #ff6b6b;
-}
-
-.like-btn:hover {
-  background: #444;
-}
-
-.like-btn.liked:hover {
-  background: rgba(255, 107, 107, 0.3);
 }
