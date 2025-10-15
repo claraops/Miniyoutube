@@ -28,7 +28,7 @@ function VideoCard({ video, onLike, onView, onFavorite, onComment, isTikTokMode 
       <div className="video-actions">
         <button onClick={() => onLike(video.id)}>❤️ {video.likes}</button>
         <button onClick={() => onFavorite(video.id)}>
-          {video.favorites ? "Retirer" : "⭐ Favori"}
+          {video.favorites ? "🔷Retirer" : "⭐ Favori"}
         </button>
         <button onClick={() => setShowComments(!showComments)}>💬</button>
         <button>

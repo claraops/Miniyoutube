@@ -1,4 +1,4 @@
-/* 🌍 Base globale */
+
 .video-card {
   background: #121212;
   border-radius: 16px;
@@ -53,29 +53,14 @@
   margin: 0;
 }
 
-.video-description {
-  font-size: 0.9rem;
-  color: #aaa;
-  margin-top: 6px;
-}
 
-/* Icône de suppression */
-.delete-btn {
-  background: none;
-  border: none;
-  color: #777;
-  cursor: pointer;
-  padding: 6px;
-  border-radius: 8px;
-  transition: 0.3s;
-}
 
 .delete-btn:hover {
   color: #ff4d4d;
   background: rgba(255, 77, 77, 0.1);
 }
 
-/* Stats (vues, durée, etc.) */
+
 .video-stats {
   display: flex;
   align-items: center;
@@ -123,7 +108,7 @@
   transform: scale(0.97);
 }
 
-/* ❤️ Like */
+
 .video-actions .liked {
   color: #ff4d4d;
   background: rgba(255, 77, 77, 0.2);
@@ -133,7 +118,7 @@
   background: rgba(255, 77, 77, 0.3);
 }
 
-/* ⭐ Favori */
+
 .video-actions .favorited {
   color: #ffd633;
   background: rgba(255, 214, 51, 0.2);
@@ -143,7 +128,7 @@
   background: rgba(255, 214, 51, 0.3);
 }
 
-/* 🗑️ Supprimer */
+
 .video-actions .delete {
   background: rgba(255, 77, 77, 0.15);
   color: #ff4d4d;
@@ -169,7 +154,10 @@
   object-fit: cover;
 }
 
-/* Overlay TikTok style */
+
+
+
+
 .tiktok-overlay {
   position: absolute;
   bottom: 0;
@@ -197,7 +185,10 @@
   margin-top: 4px;
 }
 
-/* TikTok-like action buttons */
+
+
+
+
 .action-buttons-tiktok {
   display: flex;
   flex-direction: column;

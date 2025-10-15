@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import VideoCard from "./components/VideoCard";
-import FilterBar from "./components/FilterBar";
-
+import VideoCard from "./Components/VideoCard";
+import FilterBar from "./Components/FilterBar";
 
 import "./App.css";
 
 function App() {
   const apiKey = "PaRMjY6DWN35MiaDcA8Kek4WSOO4C4u9p2rktugYWcRQqjBfCGek4xsc";
+
   const [videos, setVideos] = useState([]);
   const [query, setQuery] = useState("nature");
   const [category, setCategory] = useState("nature");
@@ -14,13 +14,13 @@ function App() {
   const [error, setError] = useState("");
   const [isTikTokMode, setIsTikTokMode] = useState(false);
 
-  // 🔹 Charger les vidéos depuis Pexels
+ 
   const fetchVideos = async (searchQuery = "nature") => {
     setLoading(true);
     setError("");
     try {
       const response = await fetch(
-        `https://api.pexels.com/videos/search?query=${searchQuery}&per_page=9`,
+        `https://api.pexels.com/videos/search?query=${searchQuery}&per_page=15`,
         { headers: { Authorization: apiKey } }
       );
       if (!response.ok) throw new Error("Erreur API Pexels");
@@ -45,7 +45,7 @@ function App() {
     }
   };
 
-  // 🔹 Sauvegarde locale à chaque changement
+  
   useEffect(() => {
     videos.forEach((v) => {
       localStorage.setItem(
@@ -98,10 +98,11 @@ function App() {
   return (
     <div className={`app ${isTikTokMode ? "tiktok-mode" : ""}`}>
       <header className="app-header">
-        <h1>🎥 VideoHub - Mini YouTube / TikTok</h1>
+        <h1> 🎬 VideoHub - Mini YouTube / TikTok</h1>
         <div className="header-buttons">
-          <button onClick={() => setIsTikTokMode(false)}>🎬 Grille</button>
-          <button onClick={() => setIsTikTokMode(true)}>📱 Mode TikTok</button>
+          <button onClick={() => setIsTikTokMode(!isTikTokMode)}>
+            {isTikTokMode ? "Mode TikTok " : "Mode YouTube"}
+          </button>
         </div>
       </header>
 
