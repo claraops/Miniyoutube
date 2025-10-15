@@ -1,0 +1,178 @@
+.video-card {
+  background: #1a1a1a;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid #333;
+}
+
+.video-card.grid {
+  cursor: pointer;
+}
+
+.video-card.grid:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.2);
+}
+
+.video-card.tiktok {
+  height: 80vh;
+  position: relative;
+  border-radius: 10px;
+}
+
+.video-container {
+  position: relative;
+  background: #000;
+}
+
+.video-card.grid .video-container {
+  aspect-ratio: 16/9;
+}
+
+.video-card.tiktok .video-container {
+  height: 100%;
+}
+
+.video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+}
+
+/* Overlay mode TikTok */
+.tiktok-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.video-info-tiktok {
+  flex: 1;
+}
+
+.video-author {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.video-description {
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+.action-buttons-tiktok {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.action-btn:hover {
+  transform: scale(1.1);
+}
+
+.action-btn.liked {
+  color: #ff6b6b;
+}
+
+/* Info mode Grille */
+.video-info-grid {
+  padding: 15px;
+}
+
+.video-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.video-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: white;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+}
+
+.video-stats {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.video-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.like-btn {
+  flex: 1;
+  padding: 8px 16px;
+  background: #333;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.like-btn.liked {
+  background: rgba(255, 107, 107, 0.2);
+  color: #ff6b6b;
+}
+
+.like-btn:hover {
+  background: #444;
+}
+
+.like-btn.liked:hover {
+  background: rgba(255, 107, 107, 0.3);
+}

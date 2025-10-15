@@ -1,107 +1,138 @@
-
-import { useState, useEffect } from 'react'
-import React from 'react'
-
+import React, { useState, useEffect } from "react";
+import VideoCard from "./components/VideoCard";
+import FilterBar from "./components/FilterBar";
+import "./App.css";
 
 function App() {
   const apiKey = "PaRMjY6DWN35MiaDcA8Kek4WSOO4C4u9p2rktugYWcRQqjBfCGek4xsc";
-  const videoUrl = "https://api.pexels.com/videos/popular?per_page=3&page=1";
-
   const [videos, setVideos] = useState([]);
+  const [query, setQuery] = useState("nature");
+  const [category, setCategory] = useState("nature");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [query, setQuery] = useState('nature');
+  const [error, setError] = useState("");
+  const [isTikTokMode, setIsTikTokMode] = useState(false);
 
-
-  const fetchVideos = async (searchQuery = 'nature' ) => {
+  // 🔹 Charger les vidéos depuis Pexels
+  const fetchVideos = async (searchQuery = "nature") => {
     setLoading(true);
-    setError('');
+    setError("");
     try {
-      const response = await fetch(videoUrl, {
-        headers: {
-          Authorization: apiKey
-        }
-      });
-      console.log(response);
-      
+      const response = await fetch(
+        `https://api.pexels.com/videos/search?query=${searchQuery}&per_page=9`,
+        { headers: { Authorization: apiKey } }
+      );
+      if (!response.ok) throw new Error("Erreur API Pexels");
 
-      if (!response.ok) {
-        throw new Error('Erreur API Pexels');
-      }
-
-      console.log(response);
-      
       const data = await response.json();
-      
-      setVideos(data.videos);
+
+      const enriched = data.videos.map((v) => {
+        const savedData = JSON.parse(localStorage.getItem(`video_${v.id}`)) || {};
+        return {
+          ...v,
+          likes: savedData.likes || 0,
+          views: savedData.views || 0,
+          favorites: savedData.favorites || false,
+          comments: savedData.comments || [],
+        };
+      });
+      setVideos(enriched);
     } catch (err) {
-      setError('Erreur lors du chargement des vidéos');
-      console.error(err);
+      setError("Erreur lors du chargement des vidéos");
     } finally {
       setLoading(false);
     }
   };
 
+  // 🔹 Sauvegarde locale à chaque changement
+  useEffect(() => {
+    videos.forEach((v) => {
+      localStorage.setItem(
+        `video_${v.id}`,
+        JSON.stringify({
+          likes: v.likes,
+          views: v.views,
+          favorites: v.favorites,
+          comments: v.comments,
+        })
+      );
+    });
+  }, [videos]);
+
+  useEffect(() => {
+    fetchVideos(category);
+  }, [category]);
+
   const handleSearch = (e) => {
     e.preventDefault();
-    if (query.trim()) {
-      fetchVideos(query);
-    }
+    if (query.trim()) fetchVideos(query);
   };
 
-  useEffect(() => { 
-    fetchVideos();
-  }, []);
+  const handleLike = (id) => {
+    setVideos((prev) =>
+      prev.map((v) => (v.id === id ? { ...v, likes: v.likes + 1 } : v))
+    );
+  };
+
+  const handleView = (id) => {
+    setVideos((prev) =>
+      prev.map((v) => (v.id === id ? { ...v, views: v.views + 1 } : v))
+    );
+  };
+
+  const handleFavorite = (id) => {
+    setVideos((prev) =>
+      prev.map((v) => (v.id === id ? { ...v, favorites: !v.favorites } : v))
+    );
+  };
+
+  const handleComment = (id, text) => {
+    setVideos((prev) =>
+      prev.map((v) =>
+        v.id === id ? { ...v, comments: [...v.comments, text] } : v
+      )
+    );
+  };
 
   return (
-    <div>
-      <h1>Vidéo depuis Pexels</h1>
-      <form onSubmit={handleSearch}>
-        <input 
-          type="text" 
-          value={query} 
-          onChange={(e) => setQuery(e.target.value)} 
-          placeholder="Rechercher des vidéos..." 
+    <div className={`app ${isTikTokMode ? "tiktok-mode" : ""}`}>
+      <header className="app-header">
+        <h1>🎥 VideoHub - Mini YouTube / TikTok</h1>
+        <div className="header-buttons">
+          <button onClick={() => setIsTikTokMode(false)}>🎬 Grille</button>
+          <button onClick={() => setIsTikTokMode(true)}>📱 Mode TikTok</button>
+        </div>
+      </header>
+
+      <form onSubmit={handleSearch} className="search-bar">
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Rechercher des vidéos..."
         />
-        <button type="submit">Recherche</button>
+        <button type="submit">🔍 Rechercher</button>
       </form>
+
+      <FilterBar category={category} setCategory={setCategory} />
+
       {loading && <p>Chargement...</p>}
       {error && <p>{error}</p>}
 
-      <div className="video-grid">
+      <div className={isTikTokMode ? "video-list" : "video-grid"}>
         {videos.map((video) => (
-          <div key={video.id} className="video-card">
-            <video width="320" height="240" controls>
-              <source src={video.video_files[0].link} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <p><strong>description :</strong> {video.user.name}</p>
-          </div>
+          <VideoCard
+            key={video.id}
+            video={video}
+            onLike={handleLike}
+            onView={handleView}
+            onFavorite={handleFavorite}
+            onComment={handleComment}
+            isTikTokMode={isTikTokMode}
+          />
         ))}
       </div>
-        
-    </div>  
-
-      
-     
-    );
+    </div>
+  );
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
