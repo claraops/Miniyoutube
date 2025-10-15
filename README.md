@@ -6,18 +6,18 @@ Photo Tech est une application web React qui permet de visualiser et interagir a
 -Modes d’affichage vidéo
 TikTok : vertical, plein écran, avec overlay et boutons flottants
 YouTube : grille classique, miniature + infos sous la vidéo
--Like des vidéos
--Ajouter / retirer des favoris
--Section commentaires dynamique
--rechercher par categorie
--Compteur de vues
--Design moderne et responsive
+-Like des vidéos ,
+-Ajouter / retirer des favoris ,
+-Section commentaires dynamique ,
+-rechercher par categorie ,
+-Compteur de vues ,
+-Design moderne et responsive ,
 -Animations et effets visuels pour une expérience utilisateur fluide
 
 # Prerequis
--Node.js 
--npm
--Clé API Pexels
+-Node.js , 
+-npm ,
+-Clé API Pexels ,
 -css, react/ vite
 
 # Struture
@@ -35,16 +35,16 @@ photo_tech/
 └─ ...
 
 # cloner projet : 
--Cloner le dépôt :
-git clone https://github.com/claraops/Miniyoutube.git
+*Cloner le dépôt :
+-git clone https://github.com/claraops/Miniyoutube.git
 
--Installer les dépendances :
-cd photo_tech
-npm install
+*Installer les dépendances :
+-cd photo_tech
+-npm install
 
--Lancer l’application :
-npm start
+*Lancer l’application :
+-npm run dev
 
--L’application sera accessible sur http://localhost:3000
+-L’application sera accessible sur :  http://localhost:5173
 
 
