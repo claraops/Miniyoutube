@@ -1,90 +1,44 @@
 
-import { useState, useEffect } from 'react'
-import React from 'react'
+import React, { useState } from "react";
 
 
 function App() {
-  const apiKey = "PaRMjY6DWN35MiaDcA8Kek4WSOO4C4u9p2rktugYWcRQqjBfCGek4xsc";
-  const videoUrl = "https://api.pexels.com/videos/popular?per_page=3&page=1";
-
-  const [videos, setVideos] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [query, setQuery] = useState('nature');
-
-
-  const fetchVideos = async (searchQuery = 'nature' ) => {
-    setLoading(true);
-    setError('');
-    try {
-      const response = await fetch(videoUrl, {
-        headers: {
-          Authorization: apiKey
-        }
-      });
-      console.log(response);
-      
-
-      if (!response.ok) {
-        throw new Error('Erreur API Pexels');
-      }
-
-      console.log(response);
-      
-      const data = await response.json();
-      
-      setVideos(data.videos);
-    } catch (err) {
-      setError('Erreur lors du chargement des vidéos');
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (query.trim()) {
-      fetchVideos(query);
-    }
-  };
-
-  useEffect(() => { 
-    fetchVideos();
-  }, []);
+  const [likes1, setLikes1] = useState(0);
+  const [likes2, setLikes2] = useState(0);
+  const [likes3, setLikes3] = useState(0);
+  const [likes4, setLikes4] = useState(0);
 
   return (
-    <div>
-      <h1>Vidéo depuis Pexels</h1>
-      <form onSubmit={handleSearch}>
-        <input 
-          type="text" 
-          value={query} 
-          onChange={(e) => setQuery(e.target.value)} 
-          placeholder="Rechercher des vidéos..." 
-        />
-        <button type="submit">Recherche</button>
-      </form>
-      {loading && <p>Chargement...</p>}
-      {error && <p>{error}</p>}
-
-      <div className="video-grid">
-        {videos.map((video) => (
-          <div key={video.id} className="video-card">
-            <video width="320" height="240" controls>
-              <source src={video.video_files[0].link} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <p><strong>description :</strong> {video.user.name}</p>
+    <>
+        <h3>BIENVENUE SUR PHOTOTHEQUE</h3>
+        <div style={{ display: "flex", justifyContent: "center", gap: "20px", padding: "20px" }}>
+          <div style={{ border: "1px solid #ccc", padding: "10px", width: "200px", textAlign: "center" }}>
+            <img src="/photos/1.png" alt="Image 1" style={{ width: "100%" }} />
+            <h3>Image 1</h3>
+            <button onClick={() => setLikes1(likes1 + 1)}>❤️ Like {likes1}</button>
           </div>
-        ))}
-      </div>
-        
-    </div>  
 
-      
-     
-    );
+          <div style={{ border: "1px solid #ccc", padding: "10px", width: "200px", textAlign: "center" }}>
+            <img src="/photos/2.png" alt="Image 2" style={{ width: "100%" }} />
+            <h3>Image 2</h3>
+            <button onClick={() => setLikes2(likes2 + 1)}>❤️ Like {likes2}</button>
+          </div>
+
+          <div style={{ border: "1px solid #ccc", padding: "10px", width: "200px", textAlign: "center" }}>
+            <img src="/photos/3.png" alt="Image 3" style={{ width: "100%" }} />
+            <h3>Image 3</h3>
+            <button onClick={() => setLikes3(likes3 + 1)}>❤️ Like {likes3}</button>
+          </div>
+
+          <div style={{ border: "1px solid #ccc", padding: "10px", width: "200px", textAlign: "center" }}>
+            <img src="/photos/4.png" alt="Image 3" style={{ width: "100%" }} />
+            <h3>Image 4</h3>
+            <button onClick={() => setLikes4(likes4 + 1)}>❤️ Like {likes4}</button>
+          </div>
+          
+        </div>
+    </>
+  );
 }
 
 export default App;
